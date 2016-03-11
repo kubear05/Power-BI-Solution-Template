@@ -1,5 +1,7 @@
 # Power-BI-Solution-Template
 
+The Power BI Solution Template brings together opportunity, target and actual sales data to provide a complete sales management reporting solution. The following instructions will help you configure and deploy the Solution Template.
+
 ## Prerequisites
 
 * An Azure Virtual Machine with a minimum recommended size of A3 or an on premise server with equivalent or greater technical specifications.
