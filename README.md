@@ -1,4 +1,4 @@
-# Power-BI-Solution-Template
+# Power BI Solution Template
 
 The Power BI Solution Template brings together opportunity, target and actual sales data to provide a complete sales management reporting solution. The following instructions will help you configure and deploy the Solution Template.
 
