@@ -4,9 +4,9 @@
 
 * An Azure Virtual Machine with a minimum recommended size of A3 or an on premise server with equivalent or greater technical specifications.
   * PowerShell version 3 or greater must be available on the server.
-  * The Active Directory PowerShell module must be available (This is installed alongside [Remote Server Administration Tools](https://www.microsoft.com/en-us/download/details.aspx?id=45520)).
 * SQL Server Enterprise Edition with a SQL Server Database.
   * SQL Server Analysis Server in tabular mode is optional.
+    * If using SSAS, the Active Directory PowerShell module must be available (This is installed alongside [Remote Server Administration Tools](https://www.microsoft.com/en-us/download/details.aspx?id=45520)).
   * SQL Server Agent must be enabled.
 * A Power BI Pro Subscription
 * If using Salesforce as a data source:
