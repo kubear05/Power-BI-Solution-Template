@@ -60,7 +60,7 @@ A sample INI file has been provided to configure the solution (Scripts\sample.in
 
 ## Step 4: Configure the Power BI Enterprise Gateway
 
-Download and set up the Power BI Enterprise Gateway according to https://powerbi.microsoft.com/en-us/documentation/powerbi-gateway-enterprise/.
+Download and set up the [Power BI Enterprise Gateway](https://powerbi.microsoft.com/en-us/documentation/powerbi-gateway-enterprise/).
 
 ## Step 5: Setting up the dashboards using Power BI
 
