@@ -12,10 +12,10 @@ This Repo contains a list of accelerators for partners and customers to quickly 
   * SQL Server Agent must be enabled.
 * A Power BI Pro Subscription
 * If using Salesforce as a data source:
-  * An Informatica account (an ETL tool used to replicate Salesforce data).
+  * An [Informatica account](https://www.informatica.com/).
   * An on premise Informatica Agent.
 * If using Dynamics CRM as a data source:
-  * A Scribe Online account (an ETL tool used to replicate Dynamics CRM data).
+  * A [Scribe Online account](http://www.scribesoft.com/products/scribe-online/).
     * API access range must include the server's IP Address (Organization tab -> Security).
     * Replication Services must be enabled.
     * Dynamics CRM and SQL Server Database connectors must be enabled.
