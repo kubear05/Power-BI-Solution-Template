@@ -55,7 +55,7 @@ A sample INI file has been provided to configure the solution (Scripts\sample.in
   * territory
 3. Configure the SQL Server Agent Jobs
   1. Open the Properties of the newly created "Save credential" job and edit the job at the "Encrypt" step.
-  2. Edit the following line to include your ETL Account (Informatica or Scribe) password: `put_password here, run, then set this back to an empty string`
+  2. Edit the following line to include your ETL account password (Informatica or Scribe): `put_password here, run, then set this back to an empty string`
   3. Run the "Data load and processing" job to pull data from your source or create a schedule for when it should run.
 
 ## Step 4: Configure the Power BI Enterprise Gateway
