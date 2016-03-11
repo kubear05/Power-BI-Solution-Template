@@ -4,7 +4,7 @@ This Repo contains a list of accelerators for partners and customers to quickly 
 
 ## Prerequisites
 
-* An Azure Virtual Machine with a minimum recommended size of A3 or an on premise server with equivalent or greater techinical specifications.
+* An Azure Virtual Machine with a minimum recommended size of A3 or an on premise server with equivalent or greater technical specifications.
   * PowerShell version 3 or greater must be available on the server.
   * The Active Directory PowerShell module must be available (This is installed alongside [Remote Server Administration Tools](https://www.microsoft.com/en-us/download/details.aspx?id=45520)).
 * SQL Server Enterprise Edition with a SQL Server Database.
@@ -16,17 +16,20 @@ This Repo contains a list of accelerators for partners and customers to quickly 
   * An on premise Informatica Agent.
 * If using Dynamics CRM as a data source:
   * A Scribe Online account (an ETL tool used to replicate Dynamics CRM data).
+    * API access range must include the server's IP Address (Organization tab -> Security).
+    * Replication Services must be enabled.
+    * Dynamics CRM and SQL Server Database connectors must be enabled.
   * An on premise Scribe Agent.
 
 ## Step 1: Configure the INI file
 
-A sample INI file has been provided (Scripts\sample.ini).
+A sample INI file has been provided to configure the solution (Scripts\sample.ini).
 
 ## Step 2: Run setup.ps1
 
 1. Open a new PowerShell console running as Administrator.
 2. Run the following PowerShell command to enable scripting for this session: `Set-ExecutionPolicy ByPass`
-3. Navigate to the Solution Template directory containing setup.ps1.
+3. Navigate to the directory containing setup.ps1.
 4. Execute setup.ps1 with the following command: `.\setup.ps1`
 
 ## Step 3: Post Deployment
@@ -51,7 +54,7 @@ A sample INI file has been provided (Scripts\sample.ini).
   * systemusermanagementmap
   * territory
 3. Configure the SQL Server Agent Jobs
-  1. Open the Properties of the newly created "Save credential" SQL Server Agent job. Edit the job at the "Encrypt" step.
+  1. Open the Properties of the newly created "Save credential" job and edit the job at the "Encrypt" step.
   2. Edit the following line to include your Scribe password: `$pwd_plain = "put_password here, run, then set this back to an empty string`
   3. Run the "Data load and processing" job to pull data from your source or create a schedule for when it should run.
 
