@@ -51,7 +51,7 @@ A sample INI file has been provided to configure the solution (Scripts\sample.in
   * opportunityproduct
   * product
   * systemuser
-  * systemusermanagementmap
+  * systemusermanagermap
   * territory
 3. Configure the SQL Server Agent Jobs
   1. Open the Properties of the newly created "Save credential" job and edit the job at the "Encrypt" step.
