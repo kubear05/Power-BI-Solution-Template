@@ -16,7 +16,7 @@ The Power BI Solution Template brings together opportunity, target and actual sa
   * An on premise [Informatica Agent](https://network.informatica.com/docs/DOC-14954).
 * If using Dynamics CRM as a data source:
   * A [Scribe Online account](http://www.scribesoft.com/products/scribe-online/).
-    * API access range must include the server's IP Address (Organization tab -> Security).
+    * API access range must include the server's IP Address (Organization tab &gt; Security).
     * Replication Services must be enabled.
     * Dynamics CRM and SQL Server Database connectors must be enabled.
   * An on premise [Scribe Agent](http://help.scribesoft.com/scribeonline/en/sol/agent/agentinstall.htm).
@@ -29,10 +29,10 @@ A sample INI file has been provided (Scripts\sample.ini) alongside the setup.ps1
 
 Key/Value | Meaning
 --- | ---
-`sql_server=servername` | SQL Server host and instance name to use (in the form of <host>\<instance>, or <instance> for on premises connections
+`sql_server=servername` | SQL Server host and instance name to use (in the form of &lt;host&gt;\\&lt;instance&gt;, or &lt;instance&gt; for on premises connections
 `sql_database=CRM`	| SQL Server database name to create
 `sql_user_id=sa` `sql_password=password`	| SQL Server username and password for SQL Server Authentication (comment or remove these two lines to use integrated authentication)
-`ssas_server=servername`	| SQL Server Analysis Services host and instance name to use (in the form of <host>\<instance>, or <instance> for on premises connections
+`ssas_server=servername`	| SQL Server Analysis Services host and instance name to use (in the form of &lt;host&gt;\\&lt;instance&gt;, or &lt;instance&gt; for on premises connections
 `ssas_database=SalesManagementTabularModel`	| SQL Server Analysis Services database name to create
 `use_ssas=true`	| Optionally toggle using SQL Server Analysis Services
 `type_etl`	| ETL tool to use (informatica | scribe)
@@ -60,7 +60,7 @@ Key/Value | Meaning
 --- | ---
 `user=user@company.com` `password=password`	| Scribe username and password
 `salt=ac103458-fcb6-41d3-94r0-43d25b4f4ff4`	| Scribe salt to use
-`key=00000000-0000-0000-0000-000000000000`	| Scribe encoding key to use (accessible from the Organization tab -> Security -> API Cryptographic Token)
+`key=00000000-0000-0000-0000-000000000000`	| Scribe encoding key to use (accessible from the Organization tab &gt; Security &gt; API Cryptographic Token)
 `organization_id=11111`	| Scribe organization ID (accessible from the Organization tab)
 `agent_name=SampleAgent`	| Scribe agent name to use
 `solution_name=SampleSolution`	| Scribe solution name to create
