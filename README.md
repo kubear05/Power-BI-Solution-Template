@@ -74,7 +74,7 @@ Key/Value | Meaning
 `target.type=MSSQL`	| Scribe target type
 `target.server=servername`	| The same SQL Server name as used by the top level entry (see sql_server=)
 `target.database=CRM`	| The same SQL Server database name as used by the top level entry (see sql_database=)
-`target.authentication=SQL Server`	| SQL Server authentication type
+`target.authentication=SQL Server`	| SQL Server authentication type (SQL Server \| Windows)
 `target.user=sa` `target.password=password`	| SQL Server username and password
 
 ## Step 2: Run setup.ps1
