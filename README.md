@@ -29,14 +29,14 @@ A sample INI file has been provided (Scripts\sample.ini) alongside the setup.ps1
 
 Key/Value | Meaning
 --- | ---
-`sql_server=servername` | SQL Server host and instance name to use (in the form of &lt;host&gt;\\&lt;instance&gt;, or &lt;instance&gt; for on premises connections
+`sql_server=servername` | SQL Server host and instance name to use (in the form of &lt;host&gt;\\&lt;instance&gt;, or &lt;instance&gt; for on premises connections)
 `sql_database=CRM`	| SQL Server database name to create
 `sql_user_id=sa` `sql_password=password`	| SQL Server username and password for SQL Server Authentication (comment or remove these two lines to use integrated authentication)
-`ssas_server=servername`	| SQL Server Analysis Services host and instance name to use (in the form of &lt;host&gt;\\&lt;instance&gt;, or &lt;instance&gt; for on premises connections
+`ssas_server=servername`	| SQL Server Analysis Services host and instance name to use (in the form of &lt;host&gt;\\&lt;instance&gt;, or &lt;instance&gt; for on premises connections)
 `ssas_database=SalesManagementTabularModel`	| SQL Server Analysis Services database name to create
 `use_ssas=true`	| Optionally toggle using SQL Server Analysis Services
-`type_etl`	| ETL tool to use (informatica | scribe)
-`type_source=salesforce`	| Data source to replicate (dynamics | salesforce)
+`type_etl`	| ETL tool to use (informatica \| scribe)
+`type_source=salesforce`	| Data source to replicate (dynamics \| salesforce)
 
 ### Informatica and Informatica Connections
 
@@ -68,7 +68,7 @@ Key/Value | Meaning
 `source.type=CRM`	| Scribe source type (CRM)
 `source.user=user@company.com` `source.password=password`	| Dynamics CRM username and password
 `source.organization=Microsoft`	| Dynamics CRM organization name
-`source.deploy=Online`	| Dynamics CRM deployment type (Online | On-Premise | Partner-Hosted (IFD))
+`source.deploy=Online`	| Dynamics CRM deployment type (Online \| On-Premise \| Partner-Hosted (IFD))
 `source.url=https://disco.crm.dynamics.com`	| Dynamics CRM url
 `target.name=SampleTarget`	| Scribe connection name to create
 `target.type=MSSQL`	| Scribe target type
