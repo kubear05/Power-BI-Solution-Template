@@ -2,13 +2,13 @@
 
 The Power BI Solution Template brings together opportunity, target, and actual sales data to provide a complete sales management reporting solution.
 
-Two tiers of deployment are available, each with unique offerings:
-* __Tier 1 - SQL Server Database Only:__
-  * Minimal prerequisites and environment setup.
-  * Easy to configure a single pull of data.
-* __Tier 2 - SQL Server Database with SQL Server Analysis Services:__
-  * Role level security.
-  * Automated data refresh.
+Two deployment options are available depending on the customer requirements:
+* __Option 1 - Power BI Model:__
+  * Incremental loads - fast ETL performance.
+  * Easily extensible with custom CRM data or data sourced from other applications.
+* __Option 2 - SSAS Model:__
+  * Secure - rules driven by the data.
+  * For large data volumes exceeding the Power BI limit and/or very demanding workloads where a dedicated instance of SSAS is required.
 
 The following instructions will help you configure and deploy the Solution Template.
 
@@ -27,7 +27,7 @@ The following instructions will help you configure and deploy the Solution Templ
 
 ## Environment Setup
 
-* If using the __Tier 2__ approach with SQL Server Analysis Services:
+* If using the __Option 2__ approach with SQL Server Analysis Services:
   * SQL Server Analysis Services must be available and configured in tabular mode.
   * SQL Server Agent must be enabled.
   * The Active Directory PowerShell module must be available (This is installed alongside [Remote Server Administration Tools](https://www.microsoft.com/en-us/download/details.aspx?id=45520)).
@@ -48,8 +48,8 @@ Key/Value | Meaning
 `sql_database=CRM`	| SQL Server database name to create
 `sql_user_id=sa` `sql_password=password`	| SQL Server username and password for SQL Server Authentication (comment or remove these two lines to use integrated authentication)
 `use_ssas=true`	| Optionally toggle using SQL Server Analysis Services
-`ssas_server=servername`	| __Tier 2:__ SQL Server Analysis Services host and instance name to use (in the form of &lt;host&gt;\\&lt;instance&gt;, or &lt;instance&gt; for on premises connections)
-`ssas_database=SalesManagementTabularModel`	| __Tier 2:__ SQL Server Analysis Services database name to create
+`ssas_server=servername`	| __Option 2 Deployment:__ SQL Server Analysis Services host and instance name to use (in the form of &lt;host&gt;\\&lt;instance&gt;, or &lt;instance&gt; for on premises connections)
+`ssas_database=SalesManagementTabularModel`	| __Option 2 Deployment:__ SQL Server Analysis Services database name to create
 `type_etl=`	| ETL tool to use (informatica \| scribe)
 `type_source=`	| Data source to replicate (dynamics \| salesforce)
 
@@ -74,8 +74,8 @@ Key/Value	| Meaning
 Key/Value | Meaning
 --- | ---
 `user=user@company.com` `password=password`	| Scribe username and password
-`salt=ac103458-fcb6-41d3-94r0-43d25b4f4ff4`	| Scribe salt to use
-`key=00000000-0000-0000-0000-000000000000`	| Scribe encoding key to use (accessible from the Organization tab &gt; Security &gt; API Cryptographic Token)
+`salt=ac103458-fcb6-41d3-94r0-43d25b4f4ff4`	| Scribe salt to use (do not modify unless requested by Scribe)
+`key=00000000-0000-0000-0000-000000000000`	| Scribe encoding key to use (accessible from the Organization tab -&gt; Security -&gt; API Cryptographic Token)
 `organization_id=11111`	| Scribe organization ID (accessible from the Organization tab)
 `agent_name=SampleAgent`	| Scribe agent name to use
 `solution_name=SampleSolution`	| Scribe solution name to create
@@ -120,7 +120,7 @@ Key/Value | Meaning
   * systemuser
   * systemusermanagermap
   * territory
-3. For __Tier 2__ deployment, configure the SQL Server Agent Jobs:
+3. For __Option 2__ deployment, configure the SQL Server Agent Jobs:
   1. Open SQL Server Configuration Manager and configure the SQL Server Agent to run as a domain account.
   2. In SQL Server Management Studio:
     1. Open the Properties of the newly created "Save credential" SQL Server Agent job and edit the job at the "Encrypt" step.
