@@ -1,6 +1,6 @@
 # Power BI Solution Template
 
-The Power BI Solution Template brings together opportunity, target, and actual sales data to provide a complete sales management reporting solution. HOly MOly
+The Power BI Solution Template brings together opportunity, target, and actual sales data to provide a complete sales management reporting solution.
 
 Two deployment options are available depending on the customer requirements:
 * __Option 1 - Power BI Model:__
