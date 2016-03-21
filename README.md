@@ -17,7 +17,7 @@ The following instructions will help you configure and deploy the Solution Templ
 * An Azure Virtual Machine with a minimum recommended size of A3 or an on premise server with equivalent or greater technical specifications.
   * PowerShell version 3 or greater must be available on the server.
 * SQL Server Enterprise Edition with a SQL Server Database (2012 service pack 3 or later).
-* A Power BI Pro Subscription
+* A Power BI Pro Subscription.
 * If using Salesforce as a data source:
   * An [Informatica account](https://www.informatica.com/).
   * An on premise [Informatica Agent](https://network.informatica.com/docs/DOC-14954).
@@ -38,7 +38,7 @@ The following instructions will help you configure and deploy the Solution Templ
 
 ## Step 1: Configure the INI file
 
-A sample INI file has been provided (Scripts\sample.ini) alongside the setup.ps1 script to configure the Solution.
+A sample INI file has been provided (Release\Scripts\sample.ini) alongside the setup.ps1 script to configure the Solution.
 
 ### INI Root
 
