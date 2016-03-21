@@ -1,0 +1,39 @@
+﻿** Highlights
+     Tables that will be rebuilt
+       None
+     Clustered indexes that will be dropped
+       None
+     Clustered indexes that will be created
+       None
+     Possible data issues
+       None
+
+** User actions
+     Create
+       [Smgt] (Schema)
+       [Smgt].[configuration] (Table)
+       [Smgt].[userMapping] (Table)
+       [Smgt].[Targets] (Table)
+       [Smgt].[Quotas] (Table)
+       [Smgt].[ActualSales] (Table)
+       [Smgt].[date] (Table)
+       [Smgt].[ProductView] (View)
+       [Smgt].[OpportunityProductView] (View)
+       [Smgt].[MeasuresView] (View)
+       [Smgt].[BusinessUnitView] (View)
+       [Smgt].[AccountView] (View)
+       [Smgt].[TerritoryView] (View)
+       [Smgt].[TempUserView] (View)
+       [Smgt].[QuotaView] (View)
+       [Smgt].[OpportunityView] (View)
+       [Smgt].[LeadView] (View)
+       [Smgt].[UserView] (View)
+       [Smgt].[UserMappingView] (View)
+       [Smgt].[TargetView] (View)
+       [smgt].[ActualSalesView] (View)
+       [Smgt].[DateView] (View)
+       [Smgt].[OpportunitySecurityView] (View)
+       [Smgt].[LeadSecurityView] (View)
+       [Smgt].[AccountSecurityView] (View)
+
+** Supporting actions

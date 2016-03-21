@@ -1,0 +1,10 @@
+C:\Users\yashti\Source\PBIST\SalesManagement\Src\SalesManagement\SalesManagementTabularModel\bin\Release\Model.asdatabase
+C:\Users\yashti\Source\PBIST\SalesManagement\Src\SalesManagement\SalesManagementTabularModel\bin\Release\Model.deploymenttargets
+C:\Users\yashti\Source\PBIST\SalesManagement\Src\SalesManagement\SalesManagementTabularModel\bin\Release\Model.deploymentoptions
+C:\Users\yashti\Source\PBIST\SalesManagement\Src\SalesManagement\SalesManagementTabularModel\obj\Release\Model.asdatabase
+C:\Users\yashti\Source\PBIST\SalesManagement\Src\SalesManagement\SalesManagementTabularModel\obj\Release\Model.deploymentoptions
+C:\Users\yashti\Source\PBIST\SalesManagement\Src\SalesManagement\SalesManagementTabularModel\obj\Release\Model.deploymenttargets
+C:\Users\yashti\Source\PBIST\SalesManagement\Src\SalesManagement\Build\bin\Release\Model.asdatabase
+C:\Users\yashti\Source\PBIST\SalesManagement\Src\SalesManagement\Build\bin\Release\Model.deploymenttargets
+C:\Users\yashti\Source\PBIST\SalesManagement\Src\SalesManagement\Build\bin\Release\Model.deploymentoptions
+C:\Users\yashti\Source\PBIST\SalesManagement\Src\SalesManagement\SalesManagementTabularModel\obj\Release\SalesManagementTabularModel.smprojResolveAssemblyReference.cache

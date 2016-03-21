@@ -1,0 +1,13 @@
+C:\Users\yashti\Source\PBIST\SalesManagement\Src\SalesManagement\DynamicsCRM\bin\Release\DynamicsCRM.dacpac
+C:\Users\yashti\Source\PBIST\SalesManagement\Src\SalesManagement\DynamicsCRM\bin\Release\DynamicsCRM.dll
+C:\Users\yashti\Source\PBIST\SalesManagement\Src\SalesManagement\DynamicsCRM\bin\Release\DynamicsCRM.pdb
+C:\Users\yashti\Source\PBIST\SalesManagement\Src\SalesManagement\DynamicsCRM\obj\Release\DynamicsCRM.dll
+C:\Users\yashti\Source\PBIST\SalesManagement\Src\SalesManagement\DynamicsCRM\obj\Release\DynamicsCRM.pdb
+C:\Users\yashti\Source\PBIST\SalesManagement\Src\SalesManagement\DynamicsCRM\obj\Release\Model.xml
+C:\Users\yashti\Source\PBIST\SalesManagement\Src\SalesManagement\DynamicsCRM\obj\Release\refactor.xml
+C:\Users\yashti\Source\PBIST\SalesManagement\Src\SalesManagement\DynamicsCRM\obj\Release\postdeploy.sql
+C:\Users\yashti\Source\PBIST\SalesManagement\Src\SalesManagement\DynamicsCRM\obj\Release\predeploy.sql
+C:\Users\yashti\Source\PBIST\SalesManagement\Src\SalesManagement\Build\bin\Release\DynamicsCRM.dacpac
+C:\Users\yashti\Source\PBIST\SalesManagement\Src\SalesManagement\Build\bin\Release\DynamicsCRM.dll
+C:\Users\yashti\Source\PBIST\SalesManagement\Src\SalesManagement\Build\bin\Release\DynamicsCRM.pdb
+C:\Users\yashti\Source\PBIST\SalesManagement\Src\SalesManagement\DynamicsCRM\obj\Release\DynamicsCRM.sqlprojResolveAssemblyReference.cache

@@ -1,0 +1,9 @@
+﻿GO
+TRUNCATE TABLE Smgt.ActualSales
+GO
+TRUNCATE TABLE Smgt.Quotas
+GO
+TRUNCATE TABLE Smgt.Targets
+GO
+TRUNCATE TABLE Smgt.userMapping
+GO

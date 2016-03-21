@@ -1,0 +1,481 @@
+CREATE TABLE [dbo].[Account](
+	[Id] [nvarchar](18) NULL,
+	[IsDeleted] [tinyint] NULL,
+	[MasterRecordId] [nvarchar](18) NULL,
+	[Name] [nvarchar](255) NULL,
+	[Type] [nvarchar](40) NULL,
+	[ParentId] [nvarchar](18) NULL,
+	[BillingStreet] [nvarchar](255) NULL,
+	[BillingCity] [nvarchar](40) NULL,
+	[BillingState] [nvarchar](80) NULL,
+	[BillingPostalCode] [nvarchar](20) NULL,
+	[BillingCountry] [nvarchar](80) NULL,
+	[BillingLatitude] [float] NULL,
+	[BillingLongitude] [float] NULL,
+	[ShippingStreet] [nvarchar](255) NULL,
+	[ShippingCity] [nvarchar](40) NULL,
+	[ShippingState] [nvarchar](80) NULL,
+	[ShippingPostalCode] [nvarchar](20) NULL,
+	[ShippingCountry] [nvarchar](80) NULL,
+	[ShippingLatitude] [float] NULL,
+	[ShippingLongitude] [float] NULL,
+	[Phone] [nvarchar](40) NULL,
+	[Fax] [nvarchar](40) NULL,
+	[AccountNumber] [nvarchar](40) NULL,
+	[Website] [nvarchar](255) NULL,
+	[PhotoUrl] [nvarchar](255) NULL,
+	[Sic] [nvarchar](20) NULL,
+	[Industry] [nvarchar](40) NULL,
+	[AnnualRevenue] [float] NULL,
+	[NumberOfEmployees] [int] NULL,
+	[Ownership] [nvarchar](40) NULL,
+	[TickerSymbol] [nvarchar](20) NULL,
+	[Description] [nvarchar](max) NULL,
+	[Rating] [nvarchar](40) NULL,
+	[Site] [nvarchar](80) NULL,
+	[OwnerId] [nvarchar](18) NULL,
+	[CreatedDate] [datetime] NULL,
+	[CreatedById] [nvarchar](18) NULL,
+	[LastModifiedDate] [datetime] NULL,
+	[LastModifiedById] [nvarchar](18) NULL,
+	[SystemModstamp] [datetime] NULL,
+	[LastActivityDate] [datetime] NULL,
+	[LastViewedDate] [datetime] NULL,
+	[LastReferencedDate] [datetime] NULL,
+	[Jigsaw] [nvarchar](20) NULL,
+	[JigsawCompanyId] [nvarchar](20) NULL,
+	[CleanStatus] [nvarchar](40) NULL,
+	[AccountSource] [nvarchar](40) NULL,
+	[DunsNumber] [nvarchar](9) NULL,
+	[Tradestyle] [nvarchar](255) NULL,
+	[NaicsCode] [nvarchar](8) NULL,
+	[NaicsDesc] [nvarchar](120) NULL,
+	[YearStarted] [nvarchar](4) NULL,
+	[SicDesc] [nvarchar](80) NULL,
+	[DandbCompanyId] [nvarchar](18) NULL,
+	[CustomerPriority__c] [nvarchar](255) NULL,
+	[SLA__c] [nvarchar](255) NULL,
+	[Active__c] [nvarchar](255) NULL,
+	[NumberofLocations__c] [float] NULL,
+	[UpsellOpportunity__c] [nvarchar](255) NULL,
+	[SLASerialNumber__c] [nvarchar](10) NULL,
+	[SLAExpirationDate__c] [datetime] NULL,
+	[Import2_Id__c] [nvarchar](255) NULL,
+	[Account_Parent_Import2_Id__c] [nvarchar](255) NULL,
+	[SCRIBE_ID] [bigint] IDENTITY(1,1) NOT NULL,
+	[SCRIBE_CREATEDON] [datetime] NOT NULL,
+	[SCRIBE_MODIFIEDON] [datetime] NOT NULL,
+	[SCRIBE_DELETEDON] [datetime] NULL,
+ CONSTRAINT [PK_Account] PRIMARY KEY CLUSTERED 
+(
+	[SCRIBE_ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+
+GO
+
+
+GO
+
+CREATE TABLE [dbo].[Lead](
+	[Id] [nvarchar](18) NULL,
+	[IsDeleted] [tinyint] NULL,
+	[MasterRecordId] [nvarchar](18) NULL,
+	[LastName] [nvarchar](80) NULL,
+	[FirstName] [nvarchar](40) NULL,
+	[Salutation] [nvarchar](40) NULL,
+	[Name] [nvarchar](121) NULL,
+	[Title] [nvarchar](128) NULL,
+	[Company] [nvarchar](255) NULL,
+	[Street] [nvarchar](255) NULL,
+	[City] [nvarchar](40) NULL,
+	[State] [nvarchar](80) NULL,
+	[PostalCode] [nvarchar](20) NULL,
+	[Country] [nvarchar](80) NULL,
+	[Latitude] [float] NULL,
+	[Longitude] [float] NULL,
+	[Phone] [nvarchar](40) NULL,
+	[MobilePhone] [nvarchar](40) NULL,
+	[Fax] [nvarchar](40) NULL,
+	[Email] [nvarchar](80) NULL,
+	[Website] [nvarchar](255) NULL,
+	[PhotoUrl] [nvarchar](255) NULL,
+	[Description] [nvarchar](max) NULL,
+	[LeadSource] [nvarchar](40) NULL,
+	[Status] [nvarchar](40) NULL,
+	[Industry] [nvarchar](40) NULL,
+	[Rating] [nvarchar](40) NULL,
+	[AnnualRevenue] [float] NULL,
+	[NumberOfEmployees] [int] NULL,
+	[OwnerId] [nvarchar](18) NULL,
+	[IsConverted] [tinyint] NULL,
+	[ConvertedDate] [datetime] NULL,
+	[ConvertedAccountId] [nvarchar](18) NULL,
+	[ConvertedContactId] [nvarchar](18) NULL,
+	[ConvertedOpportunityId] [nvarchar](18) NULL,
+	[IsUnreadByOwner] [tinyint] NULL,
+	[CreatedDate] [datetime] NULL,
+	[CreatedById] [nvarchar](18) NULL,
+	[LastModifiedDate] [datetime] NULL,
+	[LastModifiedById] [nvarchar](18) NULL,
+	[SystemModstamp] [datetime] NULL,
+	[LastActivityDate] [datetime] NULL,
+	[LastViewedDate] [datetime] NULL,
+	[LastReferencedDate] [datetime] NULL,
+	[Jigsaw] [nvarchar](20) NULL,
+	[JigsawContactId] [nvarchar](20) NULL,
+	[CleanStatus] [nvarchar](40) NULL,
+	[CompanyDunsNumber] [nvarchar](9) NULL,
+	[DandbCompanyId] [nvarchar](18) NULL,
+	[EmailBouncedReason] [nvarchar](255) NULL,
+	[EmailBouncedDate] [datetime] NULL,
+	[SICCode__c] [nvarchar](15) NULL,
+	[ProductInterest__c] [nvarchar](255) NULL,
+	[Primary__c] [nvarchar](255) NULL,
+	[CurrentGenerators__c] [nvarchar](100) NULL,
+	[NumberofLocations__c] [float] NULL,
+	[SCRIBE_ID] [bigint] IDENTITY(1,1) NOT NULL,
+	[SCRIBE_CREATEDON] [datetime] NOT NULL,
+	[SCRIBE_MODIFIEDON] [datetime] NOT NULL,
+	[SCRIBE_DELETEDON] [datetime] NULL,
+ CONSTRAINT [PK_Lead] PRIMARY KEY CLUSTERED 
+(
+	[SCRIBE_ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+
+
+
+GO
+
+CREATE TABLE [dbo].[Opportunity](
+	[Id] [nvarchar](18) NULL,
+	[IsDeleted] [tinyint] NULL,
+	[AccountId] [nvarchar](18) NULL,
+	[IsPrivate] [tinyint] NULL,
+	[Name] [nvarchar](120) NULL,
+	[Description] [nvarchar](max) NULL,
+	[StageName] [nvarchar](40) NULL,
+	[Amount] [float] NULL,
+	[Probability] [float] NULL,
+	[ExpectedRevenue] [float] NULL,
+	[TotalOpportunityQuantity] [float] NULL,
+	[CloseDate] [datetime] NULL,
+	[Type] [nvarchar](40) NULL,
+	[NextStep] [nvarchar](255) NULL,
+	[LeadSource] [nvarchar](40) NULL,
+	[IsClosed] [tinyint] NULL,
+	[IsWon] [tinyint] NULL,
+	[ForecastCategory] [nvarchar](40) NULL,
+	[ForecastCategoryName] [nvarchar](40) NULL,
+	[CampaignId] [nvarchar](18) NULL,
+	[HasOpportunityLineItem] [tinyint] NULL,
+	[Pricebook2Id] [nvarchar](18) NULL,
+	[OwnerId] [nvarchar](18) NULL,
+	[CreatedDate] [datetime] NULL,
+	[CreatedById] [nvarchar](18) NULL,
+	[LastModifiedDate] [datetime] NULL,
+	[LastModifiedById] [nvarchar](18) NULL,
+	[SystemModstamp] [datetime] NULL,
+	[LastActivityDate] [datetime] NULL,
+	[FiscalQuarter] [int] NULL,
+	[FiscalYear] [int] NULL,
+	[Fiscal] [nvarchar](6) NULL,
+	[LastViewedDate] [datetime] NULL,
+	[LastReferencedDate] [datetime] NULL,
+	[DeliveryInstallationStatus__c] [nvarchar](255) NULL,
+	[TrackingNumber__c] [nvarchar](12) NULL,
+	[OrderNumber__c] [nvarchar](8) NULL,
+	[CurrentGenerators__c] [nvarchar](100) NULL,
+	[MainCompetitors__c] [nvarchar](100) NULL,
+	[Import2_Id__c] [nvarchar](255) NULL,
+	[Account_Account_Import2_Id__c] [nvarchar](255) NULL,
+	[SCRIBE_ID] [bigint] IDENTITY(1,1) NOT NULL,
+	[SCRIBE_CREATEDON] [datetime] NOT NULL,
+	[SCRIBE_MODIFIEDON] [datetime] NOT NULL,
+	[SCRIBE_DELETEDON] [datetime] NULL,
+ CONSTRAINT [PK_Opportunity] PRIMARY KEY CLUSTERED 
+(
+	[SCRIBE_ID] ASC
+)
+);
+GO
+
+CREATE NONCLUSTERED INDEX idx_owner_id ON dbo.opportunity(ownerid);
+GO
+
+
+GO
+
+CREATE TABLE [dbo].[OpportunityLineItem](
+	[Id] [nvarchar](18) NULL,
+	[OpportunityId] [nvarchar](18) NULL,
+	[SortOrder] [int] NULL,
+	[PricebookEntryId] [nvarchar](18) NULL,
+	[Product2Id] [nvarchar](18) NULL,
+	[ProductCode] [nvarchar](255) NULL,
+	[Name] [nvarchar](376) NULL,
+	[Quantity] [float] NULL,
+	[TotalPrice] [float] NULL,
+	[UnitPrice] [float] NULL,
+	[ListPrice] [float] NULL,
+	[ServiceDate] [datetime] NULL,
+	[Description] [nvarchar](255) NULL,
+	[CreatedDate] [datetime] NULL,
+	[CreatedById] [nvarchar](18) NULL,
+	[LastModifiedDate] [datetime] NULL,
+	[LastModifiedById] [nvarchar](18) NULL,
+	[SystemModstamp] [datetime] NULL,
+	[IsDeleted] [tinyint] NULL,
+	[Opportunity_Opportunity_Import2_Id__c] [nvarchar](255) NULL,
+	[SCRIBE_ID] [bigint] IDENTITY(1,1) NOT NULL,
+	[SCRIBE_CREATEDON] [datetime] NOT NULL,
+	[SCRIBE_MODIFIEDON] [datetime] NOT NULL,
+	[SCRIBE_DELETEDON] [datetime] NULL,
+ CONSTRAINT [PK_OpportunityLineItem] PRIMARY KEY CLUSTERED 
+(
+	[SCRIBE_ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+
+GO
+
+CREATE TABLE [dbo].[OpportunityStage]
+(
+	[Id] [nvarchar](18) NOT NULL,
+	[MasterLabel] [nvarchar](255) NULL,
+	[SortOrder] [int] NULL,
+	[DefaultProbability] [float] NULL,
+	[SCRIBE_ID] [bigint] IDENTITY(1,1) NOT NULL,
+	[SCRIBE_CREATEDON] [datetime] NOT NULL,
+	[SCRIBE_MODIFIEDON] [datetime] NOT NULL,
+	[SCRIBE_DELETEDON] [datetime] NULL, 
+    CONSTRAINT [PK_OpportunityStage] PRIMARY KEY ([SCRIBE_ID])
+)
+
+GO
+
+CREATE TABLE [dbo].[Product2](
+	[Id] [nvarchar](18) NULL,
+	[Name] [nvarchar](255) NULL,
+	[ProductCode] [nvarchar](255) NULL,
+	[Description] [nvarchar](4000) NULL,
+	[IsActive] [tinyint] NULL,
+	[CreatedDate] [datetime] NULL,
+	[CreatedById] [nvarchar](18) NULL,
+	[LastModifiedDate] [datetime] NULL,
+	[LastModifiedById] [nvarchar](18) NULL,
+	[SystemModstamp] [datetime] NULL,
+	[Family] [nvarchar](40) NULL,
+	[IsDeleted] [tinyint] NULL,
+	[LastViewedDate] [datetime] NULL,
+	[LastReferencedDate] [datetime] NULL,
+	[SCRIBE_ID] [bigint] IDENTITY(1,1) NOT NULL,
+	[SCRIBE_CREATEDON] [datetime] NOT NULL,
+	[SCRIBE_MODIFIEDON] [datetime] NOT NULL,
+	[SCRIBE_DELETEDON] [datetime] NULL,
+ CONSTRAINT [PK_Product2] PRIMARY KEY CLUSTERED 
+(
+	[SCRIBE_ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+
+
+GO
+
+CREATE TABLE [dbo].[Scribe_ReplicationStatus] (
+    [EntityName]        NVARCHAR (1024) NULL,
+    [StartDate]         DATETIME        NULL,
+    [EndDate]           DATETIME        NULL,
+    [FatalLastAttempt]  TINYINT         NULL,
+    [SCRIBE_ID]         BIGINT          IDENTITY (1, 1) NOT NULL,
+    [SCRIBE_CREATEDON]  DATETIME        NOT NULL,
+    [SCRIBE_MODIFIEDON] DATETIME        NOT NULL,
+    [SCRIBE_DELETEDON]  DATETIME        NULL,
+    CONSTRAINT [PK_Scribe_ReplicationStatus] PRIMARY KEY CLUSTERED ([SCRIBE_ID] ASC)
+);
+
+
+GO
+
+CREATE TABLE [dbo].[User](
+	[Id] [nvarchar](18) NULL,
+	[Username] [nvarchar](80) NULL,
+	[LastName] [nvarchar](80) NULL,
+	[FirstName] [nvarchar](40) NULL,
+	[Name] [nvarchar](121) NULL,
+	[CompanyName] [nvarchar](80) NULL,
+	[Division] [nvarchar](80) NULL,
+	[Department] [nvarchar](80) NULL,
+	[Title] [nvarchar](80) NULL,
+	[Street] [nvarchar](255) NULL,
+	[City] [nvarchar](40) NULL,
+	[State] [nvarchar](80) NULL,
+	[PostalCode] [nvarchar](20) NULL,
+	[Country] [nvarchar](80) NULL,
+	[Latitude] [float] NULL,
+	[Longitude] [float] NULL,
+	[Email] [nvarchar](128) NULL,
+	[EmailPreferencesAutoBcc] [tinyint] NULL,
+	[EmailPreferencesAutoBccStayInTouch] [tinyint] NULL,
+	[EmailPreferencesStayInTouchReminder] [tinyint] NULL,
+	[SenderEmail] [nvarchar](80) NULL,
+	[SenderName] [nvarchar](80) NULL,
+	[Signature] [nvarchar](1333) NULL,
+	[StayInTouchSubject] [nvarchar](80) NULL,
+	[StayInTouchSignature] [nvarchar](512) NULL,
+	[StayInTouchNote] [nvarchar](512) NULL,
+	[Phone] [nvarchar](40) NULL,
+	[Fax] [nvarchar](40) NULL,
+	[MobilePhone] [nvarchar](40) NULL,
+	[Alias] [nvarchar](8) NULL,
+	[CommunityNickname] [nvarchar](40) NULL,
+	[BadgeText] [nvarchar](80) NULL,
+	[IsActive] [tinyint] NULL,
+	[TimeZoneSidKey] [nvarchar](40) NULL,
+	[UserRoleId] [nvarchar](18) NULL,
+	[LocaleSidKey] [nvarchar](40) NULL,
+	[ReceivesInfoEmails] [tinyint] NULL,
+	[ReceivesAdminInfoEmails] [tinyint] NULL,
+	[EmailEncodingKey] [nvarchar](40) NULL,
+	[ProfileId] [nvarchar](18) NULL,
+	[UserType] [nvarchar](40) NULL,
+	[LanguageLocaleKey] [nvarchar](40) NULL,
+	[EmployeeNumber] [nvarchar](20) NULL,
+	[DelegatedApproverId] [nvarchar](18) NULL,
+	[ManagerId] [nvarchar](18) NULL,
+	[LastLoginDate] [datetime] NULL,
+	[LastPasswordChangeDate] [datetime] NULL,
+	[CreatedDate] [datetime] NULL,
+	[CreatedById] [nvarchar](18) NULL,
+	[LastModifiedDate] [datetime] NULL,
+	[LastModifiedById] [nvarchar](18) NULL,
+	[SystemModstamp] [datetime] NULL,
+	[OfflineTrialExpirationDate] [datetime] NULL,
+	[OfflinePdaTrialExpirationDate] [datetime] NULL,
+	[UserPermissionsMarketingUser] [tinyint] NULL,
+	[UserPermissionsOfflineUser] [tinyint] NULL,
+	[UserPermissionsCallCenterAutoLogin] [tinyint] NULL,
+	[UserPermissionsMobileUser] [tinyint] NULL,
+	[UserPermissionsSFContentUser] [tinyint] NULL,
+	[UserPermissionsKnowledgeUser] [tinyint] NULL,
+	[UserPermissionsInteractionUser] [tinyint] NULL,
+	[UserPermissionsSupportUser] [tinyint] NULL,
+	[UserPermissionsJigsawProspectingUser] [tinyint] NULL,
+	[UserPermissionsSiteforceContributorUser] [tinyint] NULL,
+	[UserPermissionsSiteforcePublisherUser] [tinyint] NULL,
+	[UserPermissionsChatterAnswersUser] [tinyint] NULL,
+	[UserPermissionsWorkDotComUserFeature] [tinyint] NULL,
+	[ForecastEnabled] [tinyint] NULL,
+	[UserPreferencesActivityRemindersPopup] [tinyint] NULL,
+	[UserPreferencesEventRemindersCheckboxDefault] [tinyint] NULL,
+	[UserPreferencesTaskRemindersCheckboxDefault] [tinyint] NULL,
+	[UserPreferencesReminderSoundOff] [tinyint] NULL,
+	[UserPreferencesDisableAllFeedsEmail] [tinyint] NULL,
+	[UserPreferencesDisableFollowersEmail] [tinyint] NULL,
+	[UserPreferencesDisableProfilePostEmail] [tinyint] NULL,
+	[UserPreferencesDisableChangeCommentEmail] [tinyint] NULL,
+	[UserPreferencesDisableLaterCommentEmail] [tinyint] NULL,
+	[UserPreferencesDisProfPostCommentEmail] [tinyint] NULL,
+	[UserPreferencesContentNoEmail] [tinyint] NULL,
+	[UserPreferencesContentEmailAsAndWhen] [tinyint] NULL,
+	[UserPreferencesApexPagesDeveloperMode] [tinyint] NULL,
+	[UserPreferencesHideCSNGetChatterMobileTask] [tinyint] NULL,
+	[UserPreferencesDisableMentionsPostEmail] [tinyint] NULL,
+	[UserPreferencesDisMentionsCommentEmail] [tinyint] NULL,
+	[UserPreferencesHideCSNDesktopTask] [tinyint] NULL,
+	[UserPreferencesHideChatterOnboardingSplash] [tinyint] NULL,
+	[UserPreferencesHideSecondChatterOnboardingSplash] [tinyint] NULL,
+	[UserPreferencesDisCommentAfterLikeEmail] [tinyint] NULL,
+	[UserPreferencesDisableLikeEmail] [tinyint] NULL,
+	[UserPreferencesDisableMessageEmail] [tinyint] NULL,
+	[UserPreferencesJigsawListUser] [tinyint] NULL,
+	[UserPreferencesDisableBookmarkEmail] [tinyint] NULL,
+	[UserPreferencesDisableSharePostEmail] [tinyint] NULL,
+	[UserPreferencesEnableAutoSubForFeeds] [tinyint] NULL,
+	[UserPreferencesDisableFileShareNotificationsForApi] [tinyint] NULL,
+	[UserPreferencesShowTitleToExternalUsers] [tinyint] NULL,
+	[UserPreferencesShowManagerToExternalUsers] [tinyint] NULL,
+	[UserPreferencesShowEmailToExternalUsers] [tinyint] NULL,
+	[UserPreferencesShowWorkPhoneToExternalUsers] [tinyint] NULL,
+	[UserPreferencesShowMobilePhoneToExternalUsers] [tinyint] NULL,
+	[UserPreferencesShowFaxToExternalUsers] [tinyint] NULL,
+	[UserPreferencesShowStreetAddressToExternalUsers] [tinyint] NULL,
+	[UserPreferencesShowCityToExternalUsers] [tinyint] NULL,
+	[UserPreferencesShowStateToExternalUsers] [tinyint] NULL,
+	[UserPreferencesShowPostalCodeToExternalUsers] [tinyint] NULL,
+	[UserPreferencesShowCountryToExternalUsers] [tinyint] NULL,
+	[UserPreferencesShowProfilePicToGuestUsers] [tinyint] NULL,
+	[UserPreferencesShowTitleToGuestUsers] [tinyint] NULL,
+	[UserPreferencesShowCityToGuestUsers] [tinyint] NULL,
+	[UserPreferencesShowStateToGuestUsers] [tinyint] NULL,
+	[UserPreferencesShowPostalCodeToGuestUsers] [tinyint] NULL,
+	[UserPreferencesShowCountryToGuestUsers] [tinyint] NULL,
+	[UserPreferencesDisableFeedbackEmail] [tinyint] NULL,
+	[UserPreferencesDisableWorkEmail] [tinyint] NULL,
+	[UserPreferencesHideS1BrowserUI] [tinyint] NULL,
+	[UserPreferencesDisableEndorsementEmail] [tinyint] NULL,
+	[UserPreferencesPathAssistantCollapsed] [tinyint] NULL,
+	[UserPreferencesLightningExperiencePreferred] [tinyint] NULL,
+	[ContactId] [nvarchar](18) NULL,
+	[AccountId] [nvarchar](18) NULL,
+	[CallCenterId] [nvarchar](18) NULL,
+	[Extension] [nvarchar](40) NULL,
+	[FederationIdentifier] [nvarchar](512) NULL,
+	[AboutMe] [nvarchar](1000) NULL,
+	[FullPhotoUrl] [nvarchar](1024) NULL,
+	[SmallPhotoUrl] [nvarchar](1024) NULL,
+	[DigestFrequency] [nvarchar](40) NULL,
+	[DefaultGroupNotificationFrequency] [nvarchar](40) NULL,
+	[JigsawImportLimitOverride] [int] NULL,
+	[LastViewedDate] [datetime] NULL,
+	[LastReferencedDate] [datetime] NULL,
+	[SCRIBE_ID] [bigint] IDENTITY(1,1) NOT NULL,
+	[SCRIBE_CREATEDON] [datetime] NOT NULL,
+	[SCRIBE_MODIFIEDON] [datetime] NOT NULL,
+	[SCRIBE_DELETEDON] [datetime] NULL,
+ CONSTRAINT [PK_User] PRIMARY KEY CLUSTERED 
+(
+	[SCRIBE_ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+
+
+GO
+
+CREATE TABLE [dbo].[UserRole](
+	[Id] [nvarchar](18) NULL,
+	[Name] [nvarchar](80) NULL,
+	[ParentRoleId] [nvarchar](18) NULL,
+	[RollupDescription] [nvarchar](80) NULL,
+	[OpportunityAccessForAccountOwner] [nvarchar](40) NULL,
+	[CaseAccessForAccountOwner] [nvarchar](40) NULL,
+	[ContactAccessForAccountOwner] [nvarchar](40) NULL,
+	[ForecastUserId] [nvarchar](18) NULL,
+	[MayForecastManagerShare] [tinyint] NULL,
+	[LastModifiedDate] [datetime] NULL,
+	[LastModifiedById] [nvarchar](18) NULL,
+	[SystemModstamp] [datetime] NULL,
+	[DeveloperName] [nvarchar](80) NULL,
+	[PortalAccountId] [nvarchar](18) NULL,
+	[PortalType] [nvarchar](40) NULL,
+	[PortalAccountOwnerId] [nvarchar](18) NULL,
+	[Account_PortalAccountId_Import2_Id__c] [nvarchar](255) NULL,
+	[SCRIBE_ID] [bigint] IDENTITY(1,1) NOT NULL,
+	[SCRIBE_CREATEDON] [datetime] NOT NULL,
+	[SCRIBE_MODIFIEDON] [datetime] NOT NULL,
+	[SCRIBE_DELETEDON] [datetime] NULL,
+ CONSTRAINT [PK_UserRole] PRIMARY KEY CLUSTERED 
+(
+	[SCRIBE_ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+
+
+GO
+

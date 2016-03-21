@@ -1,0 +1,13 @@
+C:\Users\yashti\Source\PBIST\SalesManagement\Src\SalesManagement\Salesforce\bin\Release\Salesforce.dacpac
+C:\Users\yashti\Source\PBIST\SalesManagement\Src\SalesManagement\Salesforce\bin\Release\Salesforce.dll
+C:\Users\yashti\Source\PBIST\SalesManagement\Src\SalesManagement\Salesforce\bin\Release\Salesforce.pdb
+C:\Users\yashti\Source\PBIST\SalesManagement\Src\SalesManagement\Salesforce\obj\Release\Salesforce.dll
+C:\Users\yashti\Source\PBIST\SalesManagement\Src\SalesManagement\Salesforce\obj\Release\Salesforce.pdb
+C:\Users\yashti\Source\PBIST\SalesManagement\Src\SalesManagement\Salesforce\obj\Release\Model.xml
+C:\Users\yashti\Source\PBIST\SalesManagement\Src\SalesManagement\Salesforce\obj\Release\refactor.xml
+C:\Users\yashti\Source\PBIST\SalesManagement\Src\SalesManagement\Salesforce\obj\Release\postdeploy.sql
+C:\Users\yashti\Source\PBIST\SalesManagement\Src\SalesManagement\Salesforce\obj\Release\predeploy.sql
+C:\Users\yashti\Source\PBIST\SalesManagement\Src\SalesManagement\Build\bin\Release\Salesforce.dacpac
+C:\Users\yashti\Source\PBIST\SalesManagement\Src\SalesManagement\Build\bin\Release\Salesforce.dll
+C:\Users\yashti\Source\PBIST\SalesManagement\Src\SalesManagement\Build\bin\Release\Salesforce.pdb
+C:\Users\yashti\Source\PBIST\SalesManagement\Src\SalesManagement\Salesforce\obj\Release\Salesforce.sqlprojResolveAssemblyReference.cache
