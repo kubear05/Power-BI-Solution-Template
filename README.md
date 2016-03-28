@@ -23,6 +23,7 @@ The following software must be available:
 * Salesforce data source requirements:
   * An [Informatica account](https://www.informatica.com/).
   * An on premise [Informatica Agent](https://network.informatica.com/docs/DOC-14954).
+  * Microsoft Visual C++ 2008 Redistributable Package (x64) is required.
 * Dynamics CRM data source requirements:
   * [Scribe Online account](http://www.scribesoft.com/products/scribe-online/) is required.
   * On premise [Scribe Agent](http://help.scribesoft.com/scribeonline/en/sol/agent/agentinstall.htm) must be installed.
@@ -121,6 +122,7 @@ The following software must be available:
 * Salesforce data source requirements:
   * An [Informatica account](https://www.informatica.com/).
   * An on premise [Informatica Agent](https://network.informatica.com/docs/DOC-14954).
+  * Microsoft Visual C++ 2008 Redistributable Package (x64) is required.
 * Dynamics CRM data source requirements:
   * [Scribe Online account](http://www.scribesoft.com/products/scribe-online/) is required.
   * On premise [Scribe Agent](http://help.scribesoft.com/scribeonline/en/sol/agent/agentinstall.htm) must be installed.
