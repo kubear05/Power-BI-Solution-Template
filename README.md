@@ -139,14 +139,14 @@ The following software must be available:
 
 Key/Value | Meaning
 --- | ---
-`sql_server=[server name]` | SQL Server host and instance name to use (in the form of &lt;host&gt;\\&lt;instance&gt;, or &lt;instance&gt; for on premises connections)
-`sql_database=[database name]` | SQL Server database name to create
-`sql_user_id=[username]` `sql_password` | SQL Server username and password for SQL Server Authentication (comment or remove these two lines to use integrated authentication)
-`use_ssas=[true | false]` | __Special Note:__ Set this to true for SSAS deployments
-`ssas_server=[server name]` | SQL Server Analysis Services host and instance name to use (in the form of &lt;host&gt;\\&lt;instance&gt;, or &lt;instance&gt; for on premises connections)
-`ssas_database=[AS database name]` | SQL Server Analysis Services database name to create
-`type_etl=[informatica | scribe]` | ETL tool to use
-`type_source=[dynamics | salesforce]` | Data source to replicate
+`sql_server=[server_name]` | SQL Server host and instance name to use (in the form of &lt;host&gt;\\&lt;instance&gt;, or &lt;instance&gt; for on premises connections)
+`sql_database=[database_name]` | SQL Server database name to create
+`sql_user_id=[username]` `sql_password=[password]` | SQL Server username and password for SQL Server Authentication (comment or remove these two lines to use integrated authentication)
+`use_ssas=[true|false]` | __Special Note:__ Set this to true for SSAS deployments
+`ssas_server=[server_name]` | SQL Server Analysis Services host and instance name to use (in the form of &lt;host&gt;\\&lt;instance&gt;, or &lt;instance&gt; for on premises connections)
+`ssas_database=[AS_database_name]` | SQL Server Analysis Services database name to create
+`type_etl=[informatica|scribe]` | ETL tool to use
+`type_source=[dynamics|salesforce]` | Data source to replicate
 
 ### Step 2: Configure the ETL INI file settings
 
