@@ -1,0 +1,2 @@
+﻿CREATE SCHEMA smgt AUTHORIZATION dbo;
+GO
