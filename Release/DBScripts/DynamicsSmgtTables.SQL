@@ -1,4 +1,5 @@
-CREATE SCHEMA [Smgt]
+CREATE SCHEMA smgt AUTHORIZATION dbo;
+GO
 
 GO
 
@@ -19,6 +20,7 @@ CREATE TABLE [Smgt].[configuration] (
     [configuration_subgroup] VARCHAR (150) NOT NULL,
     [name]                   VARCHAR (150) NOT NULL,
     [value]                  VARCHAR (max) NULL,
+    [visible]                BIT           NOT NULL DEFAULT 0, 
     CONSTRAINT [pk_configuration] PRIMARY KEY CLUSTERED ([id] ASC)
 );
 
@@ -84,9 +86,9 @@ CREATE TABLE [Smgt].[Targets](
 
 GO
 
-CREATE TABLE [Smgt].[userMapping] (
-    [OwnerId] VARCHAR (50) NULL,
-	[DomainUser] VARCHAR(50) NULL
+CREATE TABLE Smgt.userMapping (
+    UserId VARCHAR (50) NULL,
+	DomainUser VARCHAR(50) NULL
 );
 
 

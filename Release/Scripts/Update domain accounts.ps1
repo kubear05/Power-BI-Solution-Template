@@ -42,12 +42,12 @@ try
     {
         "salesforce"
         {
-            $records = Invoke-Sqlcmd -ServerInstance $sqlServer -Database $sqlDatabase -Query "SELECT u.EMAIL, u.ID, um.DomainUser FROM dbo.[USER] u LEFT OUTER JOIN Smgt.userMapping um ON u.EMAIL=um.OwnerId WHERE um.DomainUser IS NULL AND u.EMAIL IS NOT NULL"
+            $records = Invoke-Sqlcmd -ServerInstance $sqlServer -Database $sqlDatabase -Query "SELECT u.EMAIL, u.ID, um.DomainUser FROM dbo.[USER] u LEFT OUTER JOIN Smgt.userMapping um ON u.ID=um.UserId WHERE um.DomainUser IS NULL AND u.EMAIL IS NOT NULL"
             break
         }
         "dynamics"
          {
-            $records = Invoke-Sqlcmd -ServerInstance $sqlServer -Database $sqlDatabase -Query "SELECT u.[internalemailaddress] as [EMAIL], u.[systemuserid], um.DomainUser FROM dbo.[systemuser] u LEFT OUTER JOIN Smgt.userMapping um ON u.internalemailaddress=um.OwnerId WHERE um.DomainUser IS NULL AND u.internalemailaddress IS NOT NULL"
+            $records = Invoke-Sqlcmd -ServerInstance $sqlServer -Database $sqlDatabase -Query "SELECT u.internalemailaddress as [EMAIL], u.systemuserid AS [ID], um.DomainUser FROM dbo.[systemuser] u LEFT OUTER JOIN Smgt.userMapping um ON u.systemuserid=um.UserId WHERE um.UserId IS NULL AND u.internalemailaddress IS NOT NULL"
             break
          }
     }
@@ -57,7 +57,7 @@ try
         $r.DomainUser = Get-DomainAndUser -userEmail $r.EMAIL
         if (! $DBNull.Equals($r.DomainUser) )
         {
-            $q = "INSERT INTO Smgt.userMapping(DomainUser, OwnerId) VALUES ('$($r.DomainUser)', '$($r.EMAIL)');"
+            $q = "INSERT INTO Smgt.userMapping(DomainUser, UserId) VALUES ('$($r.DomainUser)', '$($r.Id)');"
             Invoke-Sqlcmd -ServerInstance $sqlServer -Database $sqlDatabase -Query $q
         }
     }

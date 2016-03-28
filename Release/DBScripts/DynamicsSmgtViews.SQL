@@ -130,36 +130,34 @@ AS
 
 GO
 
+CREATE VIEW [Smgt].[ConfigurationView]
+AS
+SELECT [id]
+      ,[configuration_group]			as [Configuration Group]
+      ,[configuration_subgroup]			as [Configuration Subgroup]
+      ,[name]					as [Name]
+      ,[value]					as [Value]		
+  FROM [Smgt].[configuration] where visible=1
+  
+
+GO
+
 CREATE VIEW [Smgt].[DateView]
 AS
   SELECT [date_key],
          [full_date] AS [Date],
          [day_of_week] AS [Day of the Week],
          [day_num_in_month] AS [Day Number of the Month],
-		 [day_num_in_year] AS [Day Number of the Year],
          [day_name] AS [Day Name],
          [day_abbrev] AS [Day Abbreviated],
          [weekday_flag]  AS [Weekday Flag],
-         [week_num_in_year] AS [Week Number in Year],
-         [week_begin_date] AS [Week Begin Date],
-         [week_begin_date_key],
          [month],
          [month_name] AS [Month Name],
          [month_abbrev],
          [quarter],
          [year],
-         [yearmo],
-         [fiscal_month] AS [Fiscal Month],
-         [fiscal_quarter] AS [Fiscal Quarter],
-         [fiscal_year] AS [Fiscal Year],
-         [last_day_in_month_flag],
          [same_day_year_ago_date],
-         [same_day_year_ago_key],
-         [quarter_name],
-         [fiscal_quarter_name] AS [Fiscal Quarter Name],
-         [fiscalyearcompletename] AS [Fiscal Year Name],
-         [fiscalquartercompletename] AS [Fiscal Quarter Full Name],
-		 [FiscalMonthCompleteName] AS [Fiscal Month Full Name]
+         [week_begin_date] AS [Week Begin Date]
   FROM   [Smgt].[date]
 
 GO
@@ -252,9 +250,9 @@ AS
   SELECT hierarchy.productid AS [Product Id],
          hierarchy.NAME AS [Product Name],
          [level],
-         CONVERT(VARCHAR, b.NAME) AS Level1,
-         CONVERT(VARCHAR, c.NAME) AS Level2,
-         CONVERT(VARCHAR, d.NAME) AS Level3
+         CONVERT(VARCHAR, b.NAME) AS [Product Level 1],
+         CONVERT(VARCHAR, c.NAME) AS [Product Level 2],
+         CONVERT(VARCHAR, d.NAME) AS [Product Level 3]
   FROM   (SELECT productid,
                  NAME,
                  [level],
@@ -305,8 +303,9 @@ AS
                  dbo.systemusermanagermap.hierarchylevel
           FROM   dbo.systemusermanagermap
                  LEFT OUTER JOIN dbo.systemuser
-                              ON dbo.systemusermanagermap.systemuserid = dbo.systemuser.systemuserid) AS a
-         LEFT OUTER JOIN dbo.systemuser AS systemuser_1
+                              ON dbo.systemusermanagermap.systemuserid = dbo.systemuser.systemuserid
+		  WHERE systemusermanagermap.SCRIBE_DELETEDON is NULL) AS a
+          LEFT OUTER JOIN dbo.systemuser AS systemuser_1
                       ON a.parentsystemuserid = systemuser_1.systemuserid
   WHERE  ( a.hierarchylevel = 1 )
   AND ( systemuser_1.isdisabled = 0 )
@@ -346,7 +345,7 @@ where u.parentsystemuserid IS NOT NULL AND u.SCRIBE_DELETEDON IS NULL AND u.isdi
 select myCTE.systemuserid [User Id], myCTE.emailaddress [Email], myCTE.ascendantsystemuserid [Ascendant User Id], myCTE.ascendantemailaddress [Ascendant Email], myCTE.EmployeeLevel [Employee Level], um.DomainUser [Ascendant Domain User]
 FROM myCTE 
 LEFT OUTER JOIN smgt.userMapping um
-ON myCTE.ascendantsystemuserid = um.OwnerId
+ON myCTE.ascendantsystemuserid = um.UserId
 
 
 GO

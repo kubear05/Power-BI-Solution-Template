@@ -155,6 +155,42 @@ $informaticaConn = $ini["informatica_connections"]
 $scribe = $ini["scribe"]
 $scribeConn = $ini["scribe_connections"]
 
+switch ($typeETL)
+{
+    "informatica"
+    {
+        if ($informatica -eq $null -or $informaticaConn -eq $null)
+        {
+            "ERROR: Informatica settings missing from INI file"
+            exit
+        }
+        break
+    }
+    "scribe"
+    {
+        if ($scribe -eq $null -or $scribeConn -eq $null)
+        {
+            "ERROR: Scribe settings missing from INI file"
+            exit
+        }
+
+        $scribeSolutionName = $scribe["solution_name"]
+        if ([string]::IsNullOrEmpty($scribeSolutionName))
+        {
+            "ERROR: Scribe solution name missing from INI file"
+            exit
+        }
+
+        if ($scribeSolutionName.Length -gt 25)
+        {
+            "ERROR: Scribe solution name cannot be greater than 25 characters"
+            exit
+        }
+
+        break
+    }
+}
+
 #============================================================================================
 # Deploy SQL Database
 #============================================================================================
@@ -180,12 +216,6 @@ if ([string]::IsNullOrEmpty($sqlDatabase))
     exit
 }
 
-if ($useSSAS -and [string]::IsNullOrEmpty($ssasDatabase))
-{
-    "ERROR: SSAS Database Name not provided in INI file"
-    exit
-}
-
 $location = Get-Location
 Import-Module SQLPS -DisableNameChecking -ErrorAction Stop
 Set-Location -Path $location
@@ -205,7 +235,18 @@ if ($sqlVersion -lt 11)
     "ERROR: Only SQL server 2012 and up is supported"
     exit
 }
-$serverContainsDB = $server.Databases.Contains($sqlDatabase)
+$serverContainsDB = ($server.Databases | Where-Object {$_.Name -eq $sqlDatabase}) -ne $null
+$serverIsAzure = $server.Edition -eq "SQL Azure"
+
+if ($serverIsAzure)
+{
+    $useSSAS = $false
+}
+if ($useSSAS -and [string]::IsNullOrEmpty($ssasDatabase))
+{
+    "ERROR: SSAS Database Name not provided in INI file"
+    exit
+}
 
 switch ($typeSource)
 {
@@ -230,37 +271,62 @@ if ($Uninstall)
 {
     if ($serverContainsDB)
     {
-        $queryRemoveConnections = "ALTER DATABASE [$sqlDatabase] SET  SINGLE_USER WITH ROLLBACK IMMEDIATE"
-        $queryDelete = "DROP DATABASE $sqlDatabase"
-        if ($isSQLBasicAuth)
+        if ($serverIsAzure)
         {
-            Invoke-Sqlcmd -ServerInstance $sqlServer -Query $queryRemoveConnections -Username $sqlUserID -Password $sqlPassword
-            Invoke-Sqlcmd -ServerInstance $sqlServer -Query $queryDelete -Username $sqlUserID -Password $sqlPassword
+            $preInput = "{0}\{1}PreDeploy.sql" -f $dirDBScripts, $dbScriptType
+            $preVars = @("DatabaseName = $sqlDatabase")
+            if ($isSQLBasicAuth)
+            {
+                Invoke-Sqlcmd -ServerInstance $sqlServer -Database $sqlDatabase -InputFile $preInput -Variable $preVars -Username $sqlUserID -Password $sqlPassword
+            }
+            else
+            {
+                Invoke-Sqlcmd -ServerInstance $sqlServer -Database $sqlDatabase -InputFile $preInput -Variable $preVars
+            }
         }
         else
         {
-            Invoke-Sqlcmd -ServerInstance $sqlServer -Query $queryRemoveConnections
-            Invoke-Sqlcmd -ServerInstance $sqlServer -Query $queryDelete
+            $queryRemoveConnections = "ALTER DATABASE [$sqlDatabase] SET  SINGLE_USER WITH ROLLBACK IMMEDIATE"
+            $queryDelete = "DROP DATABASE $sqlDatabase"
+            if ($isSQLBasicAuth)
+            {
+                Invoke-Sqlcmd -ServerInstance $sqlServer -Query $queryRemoveConnections -Username $sqlUserID -Password $sqlPassword
+                Invoke-Sqlcmd -ServerInstance $sqlServer -Query $queryDelete -Username $sqlUserID -Password $sqlPassword
+            }
+            else
+            {
+                Invoke-Sqlcmd -ServerInstance $sqlServer -Query $queryRemoveConnections
+                Invoke-Sqlcmd -ServerInstance $sqlServer -Query $queryDelete
+            }
         }
     }
 }
 else
 {
-    if ($serverContainsDB)
+    if (!$serverContainsDB)
     {
-        "ERROR: SQL database [$sqlDatabase] already exists"
-        exit
+        if ($serverIsAzure)
+        {
+            "ERROR: SQL Azure Server missing database specified in INI file"
+            exit
+        }
+        else
+        {
+            $database = New-Object -TypeName Microsoft.SqlServer.Management.SMO.Database -ArgumentList $server, $sqlDatabase
+            $database.Collation = "Latin1_General_100_CI_AS"
+            $database.Create()
+        }
     }
 
     $preInput = "{0}\{1}PreDeploy.sql" -f $dirDBScripts, $dbScriptType
     $preVars = @("DatabaseName = $sqlDatabase")
     if ($isSQLBasicAuth)
     {
-        Invoke-Sqlcmd -ServerInstance $sqlServer -InputFile $preInput -Variable $preVars -Username $sqlUserID -Password $sqlPassword
+        Invoke-Sqlcmd -ServerInstance $sqlServer -Database $sqlDatabase -InputFile $preInput -Variable $preVars -Username $sqlUserID -Password $sqlPassword
     }
     else
     {
-        Invoke-Sqlcmd -ServerInstance $sqlServer -InputFile $preInput -Variable $preVars
+        Invoke-Sqlcmd -ServerInstance $sqlServer -Database $sqlDatabase -InputFile $preInput -Variable $preVars
     }
 
     $sqlScripts = @("ScribeTables.sql", "SmgtTables.sql", "SmgtViews.sql")
@@ -274,18 +340,32 @@ else
         {
             Invoke-Sqlcmd -ServerInstance $sqlServer -Database $sqlDatabase -InputFile "$dirDBScripts\$dbScriptType$sqlScript"
         }
-    
     }
 
+    $postNonAzureScripts = @(("{0}\{1}CreateJob.sql" -f $dirDBScripts, $dbScriptType), ("{0}\{1}CreateSSASUserSecurity.sql" -f $dirDBScripts, $dbScriptType))
     $postInput = "{0}\{1}PostDeploy.sql" -f $dirDBScripts, $dbScriptType
     $postVars = "SQL_SERVER = $sqlServer", "DatabaseName = $sqlDatabase", "SSAS_DB = $ssasDatabase", "ProgramFiles=$env:ProgramFiles"
 
     if ($isSQLBasicAuth)
     {
+        if (!$serverIsAzure)
+        {
+            foreach($postScript in $postNonAzureScripts)
+            {
+                Invoke-Sqlcmd -ServerInstance $sqlServer -Database $sqlDatabase -InputFile $postScript -Variable $postVars -Username $sqlUserID -Password $sqlPassword
+            }
+        }
         Invoke-Sqlcmd -ServerInstance $sqlServer -Database $sqlDatabase -InputFile $postInput -Variable $postVars -Username $sqlUserID -Password $sqlPassword
     }
     else
     {
+        if (!$serverIsAzure)
+        {
+            foreach ($postScript in $postNonAzureScripts)
+            {
+                Invoke-Sqlcmd -ServerInstance $sqlServer -Database $sqlDatabase -InputFile $postScript -Variable $postVars
+            }
+        }
         Invoke-Sqlcmd -ServerInstance $sqlServer -Database $sqlDatabase -InputFile $postInput -Variable $postVars
     }
 }
@@ -296,15 +376,18 @@ else
 
 if ($Uninstall)
 {
-    "Deleting SQL Server Agent Jobs"
-    
-    $agentJobs = @("Data load and processing", "Save credential")
-    foreach ($agentJob in $agentJobs)
+    if (!$serverIsAzure)
     {
-        $agentJobObject = $server.Jobserver.Jobs | Where-Object {$_.Name -like $agentJob}
-        if ($agentJobObject -ne $null)
+        "Deleting SQL Server Agent Jobs"
+    
+        $agentJobs = @("Data load and processing", "Save credential")
+        foreach ($agentJob in $agentJobs)
         {
-            $agentJobObject.Drop()
+            $agentJobObject = $server.Jobserver.Jobs | Where-Object {$_.Name -like $agentJob}
+            if ($agentJobObject -ne $null)
+            {
+                $agentJobObject.Drop()
+            }
         }
     }
 }
@@ -363,15 +446,18 @@ else
         Invoke-Sqlcmd -ServerInstance $sqlServer -Database $sqlDatabase -Query $configQuerySource
     }
 
-    $sqlServerAgent = Get-Service -ComputerName $sqlHost SQLSERVERAGENT -ErrorAction SilentlyContinue
-    if ($sqlServerAgent -ne $null)
+    if (!$serverIsAzure)
     {
-        "Restarting SQL Server Agent"
-        Restart-Service $sqlServerAgent -WarningAction SilentlyContinue
-    }
-    else
-    {
-        "Skipping SQL Server Agent Restart"
+        $sqlServerAgent = Get-Service -ComputerName $sqlHost SQLSERVERAGENT -ErrorAction SilentlyContinue
+        if ($sqlServerAgent -ne $null)
+        {
+            "Restarting SQL Server Agent"
+            Restart-Service $sqlServerAgent -ErrorAction SilentlyContinue -WarningAction SilentlyContinue
+        }
+        else
+        {
+            "Skipping SQL Server Agent Restart"
+        }
     }
 }
 
@@ -423,10 +509,13 @@ if ($useSSAS)
         $xml = New-Object XML
 
         $xml.Load("$location\$ssasDatabaseFile")
+        $xml.Database.ID = $ssasDatabase
+        $xml.Database.Name = $ssasDatabase
         $xml.Database.DataSources.DataSource.ConnectionString = $xml.Database.DataSources.DataSource.ConnectionString -replace "(Initial Catalog=)(.*?)(;)", "Initial Catalog=$sqlDatabase;"
         $xml.Save("$location\$ssasDatabaseFile")
 
         $xml.Load("$location\$ssasDatabaseTargetFile")
+        $xml.DeploymentTarget.Database = $ssasDatabase
         $xml.DeploymentTarget.Server = $ssasServer
         $xml.DeploymentTarget.ConnectionString = $xml.DeploymentTarget.ConnectionString -replace "(DataSource=)(.*?)(;)", "DataSource=$ssasServer;"
         $xml.Save("$location\$ssasDatabaseTargetFile")
@@ -480,7 +569,7 @@ if (!$Uninstall)
             $idSource = INFA-New-SFConnection -ConnectionName $informaticaSourceName -UserID $informaticaConn["source.user"] -Password $informaticaConn["source.password"] -SecurityToken $informaticaConn["source.token"] -AgentName $informaticaConn["source.agent_name"]
             $idTarget = INFA-New-SQLConnection -ConnectionName $informaticaTargetName -Hostname $informaticaConn["target.hostname"] -Database $informaticaConn["target.database"] -UserID $informaticaConn["target.user"] -Password $informaticaConn["target.password"] -AgentName $informaticaConn["target.agent_name"]
 
-            "Create a new Informatica Task using source $informaticaSourceName ($idSource) and target $informaticaTargetName ($idTarget)"
+            "Create a new Informatica Task using source $informaticaSourceName and target $informaticaTargetName"
 
             INFA-Logout
 
@@ -495,20 +584,40 @@ if (!$Uninstall)
             $agentID = SUGet-AgentID -AgentName $scribe["agent_name"] -OrganizationID $scribe["organization_id"] -AuthenticationHeader $auth
 
             $propsSrc = @()
-            $prop = @{ "Key"="DeploymentType"; "Value"= AES-Encrypt -message $scribeConn["source.deploy"] -key $scribe["key"] -salt $scribe["salt"] }
-            $propsSrc += $prop
-            $prop = @{ "Key"="Url"; "Value"= AES-Encrypt -message $scribeConn["source.url"] -key $scribe["key"] -salt $scribe["salt"] }
-            $propsSrc += $prop
-            $prop = @{ "Key"="UserId"; "Value" = AES-Encrypt -message $scribeConn["source.user"] -key $scribe["key"] -salt $scribe["salt"] }
-            $propsSrc += $prop
-            $prop = @{ "Key"="Password"; "Value" = AES-Encrypt -message $scribeConn["source.password"] -key $scribe["key"] -salt $scribe["salt"] }
-            $propsSrc += $prop
-            $prop = @{ "Key"="Organization"; "Value"= AES-Encrypt -message $scribeConn["source.organization"] -key $scribe["key"] -salt $scribe["salt"] }
-            $propsSrc += $prop
-            if ($typeSource -eq "dynamics")
+            switch ($typeSource)
             {
-                $prop = @{ "Key"="DisplayPickListNames"; "Value"= AES-Encrypt -message "true" -key $scribe["key"] -salt $scribe["salt"] }
-                $propsSrc += $prop
+                "dynamics"
+                {
+                    $prop = @{ "Key"="DeploymentType"; "Value"= AES-Encrypt -message $scribeConn["source.deploy"] -key $scribe["key"] -salt $scribe["salt"] }
+                    $propsSrc += $prop
+                    $prop = @{ "Key"="Url"; "Value"= AES-Encrypt -message $scribeConn["source.url"] -key $scribe["key"] -salt $scribe["salt"] }
+                    $propsSrc += $prop
+                    $prop = @{ "Key"="UserId"; "Value" = AES-Encrypt -message $scribeConn["source.user"] -key $scribe["key"] -salt $scribe["salt"] }
+                    $propsSrc += $prop
+                    $prop = @{ "Key"="Password"; "Value" = AES-Encrypt -message $scribeConn["source.password"] -key $scribe["key"] -salt $scribe["salt"] }
+                    $propsSrc += $prop
+                    $prop = @{ "Key"="Organization"; "Value"= AES-Encrypt -message $scribeConn["source.organization"] -key $scribe["key"] -salt $scribe["salt"] }
+                    $propsSrc += $prop
+                    $prop = @{ "Key"="DisplayPickListNames"; "Value"= AES-Encrypt -message "true" -key $scribe["key"] -salt $scribe["salt"] }
+                    $propsSrc += $prop
+                    break
+                }
+                "salesforce"
+                {
+                    $prop = @{ "Key"="DeploymentType"; "Value"= AES-Encrypt -message $scribeConn["source.deploy"] -key $scribe["key"] -salt $scribe["salt"] }
+                    $propsSrc += $prop
+                    $prop = @{ "Key"="Url"; "Value"= AES-Encrypt -message $scribeConn["source.url"] -key $scribe["key"] -salt $scribe["salt"] }
+                    $propsSrc += $prop
+                    $prop = @{ "Key"="UserId"; "Value" = AES-Encrypt -message $scribeConn["source.user"] -key $scribe["key"] -salt $scribe["salt"] }
+                    $propsSrc += $prop
+                    $prop = @{ "Key"="Password"; "Value" = AES-Encrypt -message $scribeConn["source.password"] -key $scribe["key"] -salt $scribe["salt"] }
+                    $propsSrc += $prop
+                    $prop = @{ "Key"="SecurityToken"; "Value"= AES-Encrypt -message $scribeConn["source.token"] -key $scribe["key"] -salt $scribe["salt"] }
+                    $propsSrc += $prop
+                    $prop = @{ "Key"="UseBulkApiRS"; "Value"= AES-Encrypt -message "true" -key $scribe["key"] -salt $scribe["salt"] }
+                    $propsSrc += $prop
+                    break
+                }
             }
 
             $propsTarget = @()

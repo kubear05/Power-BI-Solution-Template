@@ -121,36 +121,34 @@ WITH tree
 
 GO
 
+CREATE VIEW [Smgt].[ConfigurationView]
+AS
+SELECT [id]
+      ,[configuration_group]			as [Configuration Group]
+      ,[configuration_subgroup]			as [Configuration Subgroup]
+      ,[name]					as [Name]
+      ,[value]					as [Value]		
+  FROM [Smgt].[configuration] where visible=1
+  
+
+GO
+
 CREATE VIEW [Smgt].[DateView]
 AS
   SELECT [date_key],
          [full_date] AS [Date],
          [day_of_week] AS [Day of the Week],
          [day_num_in_month] AS [Day Number of the Month],
-		 [day_num_in_year] AS [Day Number of the Year],
          [day_name] AS [Day Name],
          [day_abbrev] AS [Day Abbreviated],
          [weekday_flag]  AS [Weekday Flag],
-         [week_num_in_year] AS [Week Number in Year],
-         [week_begin_date] AS [Week Begin Date],
-         [week_begin_date_key],
          [month],
          [month_name] AS [Month Name],
          [month_abbrev],
          [quarter],
          [year],
-         [yearmo],
-         [fiscal_month] AS [Fiscal Month],
-         [fiscal_quarter] AS [Fiscal Quarter],
-         [fiscal_year] AS [Fiscal Year],
-         [last_day_in_month_flag],
          [same_day_year_ago_date],
-         [same_day_year_ago_key],
-         [quarter_name],
-         [fiscal_quarter_name] AS [Fiscal Quarter Name],
-         [fiscalyearcompletename] AS [Fiscal Year Name],
-         [fiscalquartercompletename] AS [Fiscal Quarter Full Name],
-		 [FiscalMonthCompleteName] AS [Fiscal Month Full Name]
+         [week_begin_date] AS [Week Begin Date]
   FROM   [Smgt].[date]
 
 GO
@@ -233,9 +231,9 @@ AS
 		id			AS [Product Id],
 		name		AS [Product Name],
 		1			AS [level],
-		Family		AS [Level1],
-		Name		AS [Level2],
-		NULL		AS [Level3]
+		Family		AS [Product Level 1],
+		Name		AS [Product Level 2],
+		NULL		AS [Product Level 3]
 	FROM dbo.Product2
 	WHERE ( IsActive = 1)
 
@@ -295,7 +293,7 @@ where u.managerid IS NOT NULL AND u.isactive=1
 select myCTE.userid [User Id], myCTE.emailaddress [Email], myCTE.ascendantuserid [Ascendant User Id], myCTE.ascendantemailaddress [Ascendant Email], myCTE.EmployeeLevel [Employee Level], um.DomainUser [Ascendant Domain User]
 FROM myCTE 
 LEFT OUTER JOIN smgt.userMapping um
-ON myCTE.ascendantuserid = um.OwnerId
+ON myCTE.ascendantuserid = um.UserId
 
 GO
 
@@ -307,7 +305,8 @@ SELECT	a.name										AS [Full Name],
 			0										AS [hierarchy level], 
 			b.name									AS [Manager Name]
   FROM dbo.[User] a
-  join dbo.[user] b ON a.managerid = b.id
+  INNER JOIN dbo.[user] b ON a.managerid = b.id
+  WHERE a.MANAGERID in (select id from dbo.[user] where isactive=1)
   
   UNION ALL
   
@@ -318,9 +317,11 @@ SELECT	a.name										AS [Full Name],
          'Root'										AS [Manager Name]
 FROM (SELECT  name, id 
 		FROM      dbo.[User]
-        WHERE   managerid = '' OR managerid IS NULL)  AS b
+        WHERE   isactive=1 AND (managerid = '' OR managerid IS NULL OR 
+			managerid NOT IN (SELECT id FROM dbo.[user] WHERE isactive=1 ) ) ) AS b
   
  UNION ALL
+
  SELECT 'Root'										AS [Full Name], 
 		'000000000000000000'						AS [User Id], 
 		'000000000000000000'						AS [Parent User Id], 
