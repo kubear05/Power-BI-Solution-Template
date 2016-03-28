@@ -26,7 +26,7 @@ The following software must be available:
 * Dynamics CRM data source requirements:
   * [Scribe Online account](http://www.scribesoft.com/products/scribe-online/) is required.
   * On premise [Scribe Agent](http://help.scribesoft.com/scribeonline/en/sol/agent/agentinstall.htm) must be installed.
-  * Scribe API access range must include the server's ID Address (Organization tab -> Security).
+  * Scribe API access range must include the server's IP Address (Organization tab -> Security).
   * Scribe Dynamics CRM and SQL Server Database connectors must be enabled.
 * A destination database - either:
   * Azure SQL DB, or
