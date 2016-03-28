@@ -1,16 +1,16 @@
 # Power BI Solution Template
 
-The Power BI Solution Template brings together opportunity, target, and actual sales data to provide a complete sales management reporting solution.
+The Power BI Sales Management Solution Template reduces the time to implement a Power BI solution on Dynamics CRM or Salesforce.
 
-Two deployment options are available depending on the customer requirements:
-* __Option 1 - Power BI Model:__
-  * Incremental loads - fast ETL performance.
-  * Easily extensible with custom CRM data or data sourced from other applications.
-* __Option 2 - SSAS Model:__
-  * Secure - rules driven by the data.
-  * For large data volumes exceeding the Power BI limit and/or very demanding workloads where a dedicated instance of SSAS is required.
+Two deployment options are available depending on customer requirements. Both approaches benefit from fast ETL loads with incremental updates. Where they differ is where the model and data reside.
 
-The following instructions will help you configure and deploy the Solution Template.
+__Option 1 - Power BI Model__
+In the Power BI Model, the model and data reside within the .pbix file. When published to PowerBI.com, the data can be refreshed from the source. Advantages of the Power BI Model approach include Cortana integration and natural language querying. The model data volume is limited to 250 MB (although this is the compressed figure – this restriction only becomes a factor for large CRM implementations).
+
+__Option 2 - SSAS Model__
+With this approach, the data and model reside in an instance of SQL Server Analysis Services separate from Power BI. This is recommended when data volumes exceed the 250MB limit or when performance requirements exceed what Power BI can provide.
+
+The SSAS Model also supports row level security with rules derived from the source application (this feature will be supported in the Power BI Model in the summer of 2016).
 
 ## Prerequisites
 
