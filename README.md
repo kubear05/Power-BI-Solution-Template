@@ -203,6 +203,33 @@ __Congratulations__ - you have successfully deployed the solution template!
 
 ## Addendum A: Populated Actual and Quota Values
 
+The template contains the following tables to be separately populated with actuals and quota values. It is the responsibility of the end customer to provide the mapping of source identifiers to the CRM identifiers (e.g., the account IDs may not match between an ERP and CRM system), configure the settings to pull actual values from the actuals table instead of closed opportunities, and keep values in both tables up to date.
+
+When the empty tables are populated, these values appear in the template Power BI dashboard.
+
+### ActualSales
+
+The default configuration is to pull actual sales from closed opportunities. To change this behavior, first populate the smgt.ActualSales table (defined below) and update  the configuration table as follows:
+
+`update Smgt.configuration set [value]=1 where configuration_subgroup='actual_sales' and [name]='enabled'`
+
+Column | Datatype | Description
+--- | --- | ---
+InvoiceID | varchar(50) | Invoice indentifier from source system
+Revenue | Decimal | Actual revenue amount
+InvoiceDate | Date | Date when revenue realized
+AccountID | Uniqueidentifier | The CRM account identifier (where original source system accountIDs do not match those in CRM, the value must be provided)
+ProductID | Uniqueidentifier | The CRM product identifier (where original source system product identifiers do not match those in CRM, the value must be provided)
+
+### Quota
+
+Column | Datatype | Description
+--- | --- | ---
+Date | Date |
+OwnerID | Uniqueidentifier | The CRM system user identifier (where original source system product identifiers do not match those in CRM, the value must be provided)
+ProductID | Uniqueidentifier | The CRM product identifier
+Quota | decimal | 
+
 ## Addendum B: Informatica INI Contents
 
 Key/Value | Meaning
