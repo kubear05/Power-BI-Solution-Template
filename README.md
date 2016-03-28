@@ -278,3 +278,11 @@ In order to change the fiscal start month, you will need to go to the Smgt.Confi
 `UPDATE [Smgt].[configuration] SET [value] = 1 WHERE [name] = 'FiscalMonthStart'`
 
 To support other types of fiscal calendars you would need to reinsert the data into the date table and ensure the fields beginning with Fiscal are populated including the calculated columns and measurers inside the date table within the model.
+
+## Addendum E: Informatica Agent Environment Setup
+
+If a proxy is requiring Windows authentication is deployed in your enterprise, the Informatica Agent should be run under a domain account having access to that proxy. Please contact Informatica support for the required steps, as the Agent’s setup does not have an option for changing the service account.
+
+The initial data load can be significantly sped up if the Salesforce bulk APIs are used (option on the schedule page of a replication task). Also, setting up the SQL database in simple recovery mode will improve the load performance.
+
+Currently, the Informatica trial period (with a $200 promotional pricing) has a 5 million rows per month limit.
