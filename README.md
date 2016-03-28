@@ -198,7 +198,7 @@ Refer to the addendums depending on the ETL tool selected - Informatica or Scrib
 
 1. Open Release\PowerBIReport\SalesManagementReport.pbix
 2. The Connection to SQL Server Analysis Services generally needs to be updated.
-3. Click "Edit" and enter the server name where SQL Server Analysis Services was installed.
+3. Click "Edit Query" in Power BI and enter the server name where SQL Server Analysis Services was installed.
 4. Update the connection to SQL Server Database or SQL Server Analysis Services based on the deployed environment.
 
 __Congratulations__ - you have successfully deployed the solution template!
