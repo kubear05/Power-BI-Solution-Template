@@ -259,14 +259,14 @@ Key/Value | Meaning
 `key=00000000-0000-0000-0000-000000000000` | Scribe encoding key to use (accessible from the Organization tab -> Security -> API Cryptographic Token)
 `organization_id=11111` | Scribe organization ID (accessible from the Organization tab)
 `agent_name=SampleAgent` | Scribe agent name to use
-`solution_name=SampleSolution` | Scribe solution name to create (Maximum number of characters: 25)
-`source.name=SampleSource` | Scribe source connection name to create (Maximum number of characters: 25)
+`solution_name=SampleSolution` | Scribe solution name to create (maximum number of characters: 25)
+`source.name=SampleSource` | Scribe source connection name to create (maximum number of characters: 25)
 `source.type=CRM` | Scribe source type (CRM)
 `source.user=[username]` `source.password=password` | Dynamics CRM username and password
 `source.organization=Microsoft` | Dynamics CRM organization name
 `source.deploy=[deployment type]` | Dynamics CRM deployment type (Online | On-Premise | Partner-Hosted (IFD))
 `source.url=https://disco.crm.dynamics.com` | Dynamics CRM url
-`target.name=SampleTarget` | Scribe target connection name to create (Maximum number of characters: 25)
+`target.name=SampleTarget` | Scribe target connection name to create (maximum number of characters: 25)
 `target.type=MSSQL` | Scribe target type
 `target.server=[server name]` | The same SQL Server name as used by the top level entry (see sql_server=)
 `target.database=[database name]` | The same SQL Server database name as used by the top level entry (see sql_database=)
