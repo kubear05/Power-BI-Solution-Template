@@ -75,7 +75,7 @@
     <Folder Include="smgt\Views" />
   </ItemGroup>
   <ItemGroup>
-    <PostDeploy Include="postdeploymentscript.sql" />
+    <PostDeploy Include="postdeploymentBuild.sql" />
     <PreDeploy Include="predeploymentscript.sql" />
     <Build Include="dbo\Tables\account.sql" />
     <Build Include="dbo\Tables\businessunit.sql" />
