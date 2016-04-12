@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "DynamicsCRM", "DynamicsCRM\DynamicsCRM.sqlproj", "{6C3F2E34-9D80-4956-B934-A74AC85C4340}"
 EndProject
@@ -17,6 +17,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Build", "Build\Build.csproj", "{88046336-6F77-47EA-B901-117F3D903C44}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BuildDeploy", "BuildDeploy", "{258F5097-6909-486D-A96E-FDE000DBF285}"
+EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "DynamicsGP", "DynamicsGP\DynamicsGP.sqlproj", "{0012D37E-C221-46AA-B1FE-17AF46634EF3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -85,30 +87,29 @@ Global
 		{88046336-6F77-47EA-B901-117F3D903C44}.Sample|Any CPU.Build.0 = Sample|Any CPU
 		{88046336-6F77-47EA-B901-117F3D903C44}.Sample|x86.ActiveCfg = Release|Any CPU
 		{88046336-6F77-47EA-B901-117F3D903C44}.Sample|x86.Build.0 = Release|Any CPU
+		{0012D37E-C221-46AA-B1FE-17AF46634EF3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0012D37E-C221-46AA-B1FE-17AF46634EF3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0012D37E-C221-46AA-B1FE-17AF46634EF3}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{0012D37E-C221-46AA-B1FE-17AF46634EF3}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{0012D37E-C221-46AA-B1FE-17AF46634EF3}.Debug|x86.Build.0 = Debug|Any CPU
+		{0012D37E-C221-46AA-B1FE-17AF46634EF3}.Debug|x86.Deploy.0 = Debug|Any CPU
+		{0012D37E-C221-46AA-B1FE-17AF46634EF3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0012D37E-C221-46AA-B1FE-17AF46634EF3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0012D37E-C221-46AA-B1FE-17AF46634EF3}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{0012D37E-C221-46AA-B1FE-17AF46634EF3}.Release|x86.ActiveCfg = Release|Any CPU
+		{0012D37E-C221-46AA-B1FE-17AF46634EF3}.Release|x86.Build.0 = Release|Any CPU
+		{0012D37E-C221-46AA-B1FE-17AF46634EF3}.Release|x86.Deploy.0 = Release|Any CPU
+		{0012D37E-C221-46AA-B1FE-17AF46634EF3}.Sample|Any CPU.ActiveCfg = Debug|Any CPU
+		{0012D37E-C221-46AA-B1FE-17AF46634EF3}.Sample|Any CPU.Build.0 = Debug|Any CPU
+		{0012D37E-C221-46AA-B1FE-17AF46634EF3}.Sample|Any CPU.Deploy.0 = Debug|Any CPU
+		{0012D37E-C221-46AA-B1FE-17AF46634EF3}.Sample|x86.ActiveCfg = Debug|Any CPU
+		{0012D37E-C221-46AA-B1FE-17AF46634EF3}.Sample|x86.Build.0 = Debug|Any CPU
+		{0012D37E-C221-46AA-B1FE-17AF46634EF3}.Sample|x86.Deploy.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{88046336-6F77-47EA-B901-117F3D903C44} = {258F5097-6909-486D-A96E-FDE000DBF285}
-	EndGlobalSection
-	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 5
-		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
-		SccTeamFoundationServer = https://pbist.visualstudio.com/defaultcollection
-		SccLocalPath0 = .
-		SccProjectUniqueName1 = DynamicsCRM\\DynamicsCRM.sqlproj
-		SccProjectName1 = DynamicsCRM
-		SccLocalPath1 = DynamicsCRM
-		SccProjectUniqueName2 = Salesforce\\Salesforce.sqlproj
-		SccProjectName2 = Salesforce
-		SccLocalPath2 = Salesforce
-		SccProjectUniqueName3 = SalesManagementTabularModel\\SalesManagementTabularModel.smproj
-		SccProjectName3 = SalesManagementTabularModel
-		SccLocalPath3 = SalesManagementTabularModel
-		SccProjectUniqueName4 = Build\\Build.csproj
-		SccProjectTopLevelParentUniqueName4 = SalesManagement.sln
-		SccProjectName4 = Build
-		SccLocalPath4 = Build
 	EndGlobalSection
 EndGlobal
