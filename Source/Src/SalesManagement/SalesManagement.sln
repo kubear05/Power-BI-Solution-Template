@@ -20,6 +20,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BuildDeploy", "BuildDeploy"
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "DynamicsGP", "DynamicsGP\DynamicsGP.sqlproj", "{0012D37E-C221-46AA-B1FE-17AF46634EF3}"
 EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "DynamicsNAV", "DynamicsNAV\DynamicsNAV.sqlproj", "{285A7B91-FD8F-40FB-A8F0-73E37FC3041B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -105,6 +107,24 @@ Global
 		{0012D37E-C221-46AA-B1FE-17AF46634EF3}.Sample|x86.ActiveCfg = Debug|Any CPU
 		{0012D37E-C221-46AA-B1FE-17AF46634EF3}.Sample|x86.Build.0 = Debug|Any CPU
 		{0012D37E-C221-46AA-B1FE-17AF46634EF3}.Sample|x86.Deploy.0 = Debug|Any CPU
+		{285A7B91-FD8F-40FB-A8F0-73E37FC3041B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{285A7B91-FD8F-40FB-A8F0-73E37FC3041B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{285A7B91-FD8F-40FB-A8F0-73E37FC3041B}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{285A7B91-FD8F-40FB-A8F0-73E37FC3041B}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{285A7B91-FD8F-40FB-A8F0-73E37FC3041B}.Debug|x86.Build.0 = Debug|Any CPU
+		{285A7B91-FD8F-40FB-A8F0-73E37FC3041B}.Debug|x86.Deploy.0 = Debug|Any CPU
+		{285A7B91-FD8F-40FB-A8F0-73E37FC3041B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{285A7B91-FD8F-40FB-A8F0-73E37FC3041B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{285A7B91-FD8F-40FB-A8F0-73E37FC3041B}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{285A7B91-FD8F-40FB-A8F0-73E37FC3041B}.Release|x86.ActiveCfg = Release|Any CPU
+		{285A7B91-FD8F-40FB-A8F0-73E37FC3041B}.Release|x86.Build.0 = Release|Any CPU
+		{285A7B91-FD8F-40FB-A8F0-73E37FC3041B}.Release|x86.Deploy.0 = Release|Any CPU
+		{285A7B91-FD8F-40FB-A8F0-73E37FC3041B}.Sample|Any CPU.ActiveCfg = Debug|Any CPU
+		{285A7B91-FD8F-40FB-A8F0-73E37FC3041B}.Sample|Any CPU.Build.0 = Debug|Any CPU
+		{285A7B91-FD8F-40FB-A8F0-73E37FC3041B}.Sample|Any CPU.Deploy.0 = Debug|Any CPU
+		{285A7B91-FD8F-40FB-A8F0-73E37FC3041B}.Sample|x86.ActiveCfg = Debug|Any CPU
+		{285A7B91-FD8F-40FB-A8F0-73E37FC3041B}.Sample|x86.Build.0 = Debug|Any CPU
+		{285A7B91-FD8F-40FB-A8F0-73E37FC3041B}.Sample|x86.Deploy.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

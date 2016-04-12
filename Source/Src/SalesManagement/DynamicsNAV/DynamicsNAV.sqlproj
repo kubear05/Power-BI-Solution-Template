@@ -4,16 +4,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <Name>DynamicsGP</Name>
+    <Name>DynamicsNAV</Name>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectVersion>4.1</ProjectVersion>
-    <ProjectGuid>{0012d37e-c221-46aa-b1fe-17af46634ef3}</ProjectGuid>
-    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql120DatabaseSchemaProvider</DSP>
+    <ProjectGuid>{285a7b91-fd8f-40fb-a8f0-73e37fc3041b}</ProjectGuid>
+    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql130DatabaseSchemaProvider</DSP>
     <OutputType>Database</OutputType>
     <RootPath>
     </RootPath>
-    <RootNamespace>DynamicsGP</RootNamespace>
-    <AssemblyName>DynamicsGP</AssemblyName>
+    <RootNamespace>DynamicsNAV</RootNamespace>
+    <AssemblyName>DynamicsNAV</AssemblyName>
     <ModelCollation>1033, CI</ModelCollation>
     <DefaultFileStructure>BySchemaAndSchemaType</DefaultFileStructure>
     <DeployToDatabase>True</DeployToDatabase>
@@ -57,35 +57,30 @@
   <Import Condition="'$(SQLDBExtensionsRefPath)' == ''" Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
   <ItemGroup>
     <Folder Include="Properties" />
-    <Folder Include="dbo" />
     <Folder Include="bm" />
-    <Folder Include="dbo\Tables" />
     <Folder Include="bm\Tables" />
     <Folder Include="bm\Views" />
+    <Folder Include="dbo" />
+    <Folder Include="dbo\Tables" />
   </ItemGroup>
   <ItemGroup>
-    <Build Include="dbo\Tables\GP_Address.sql" />
-    <Build Include="dbo\Tables\GP_Customer.sql" />
-    <Build Include="dbo\Tables\GP_CustomerClass.sql" />
-    <Build Include="dbo\Tables\GP_Item.sql" />
-    <Build Include="dbo\Tables\GP_ItemClass.sql" />
-    <Build Include="dbo\Tables\GP_SalesOrderDetail.sql" />
-    <Build Include="dbo\Tables\GP_SalesOrderHeader.sql" />
-    <Build Include="dbo\Tables\GP_SalesOrderType.sql" />
-    <Build Include="dbo\Tables\GP_SalesPerson.sql" />
-    <Build Include="bm\Tables\date.sql" />
     <Build Include="bm\Tables\configuration.sql" />
-    <Build Include="bm\Views\Users.sql" />
-    <Build Include="bm\Views\SalesOrders.sql" />
-    <Build Include="bm\Views\Item.sql" />
-    <Build Include="bm\Views\Accounts.sql" />
-    <Build Include="bm\Views\AccountAddress.sql" />
-    <Build Include="bm\Views\MeasuresView.sql" />
+    <Build Include="bm\Tables\date.sql" />
     <None Include="InsertConfiguration.sql" />
     <None Include="InsertDates.sql" />
     <PostDeploy Include="postdeploymentBuild.sql" />
-    <Build Include="bm\Views\DateView.sql" />
+    <Build Include="bm\Views\AccountAddress.sql" />
+    <Build Include="bm\Views\Accounts.sql" />
     <Build Include="bm\Views\ConfigurationView.sql" />
+    <Build Include="bm\Views\DateView.sql" />
+    <Build Include="bm\Views\Item.sql" />
+    <Build Include="bm\Views\MeasuresView.sql" />
+    <Build Include="bm\Views\SalesOrders.sql" />
+    <Build Include="bm\Views\Users.sql" />
+    <Build Include="dbo\Tables\Customer.sql" />
+    <Build Include="dbo\Tables\Item.sql" />
+    <Build Include="dbo\Tables\ProductGroup.sql" />
+    <Build Include="dbo\Tables\SalesPerson.sql" />
     <Build Include="bm\bm.sql" />
   </ItemGroup>
 </Project>

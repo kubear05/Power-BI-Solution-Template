@@ -3,6 +3,6 @@
 	SELECT [Dim_CustomerNumber] AS [Account Number]
       ,[Dim_CustomerName] AS [Account Name]
       ,[Dim_AccountManager] As [Account Manager]
-	  ,cc.Dim_ClassDescription AS [Class Description]
+	  ,cc.Dim_ClassDescription AS [Segment]
   FROM [dbo].[GP_Customer] c
   left join GP_CustomerClass cc on cc.Dim_CustomerClass=c.Dim_CustomerClass
